@@ -70,7 +70,7 @@
 						}
 					}
 				} else {
-					document.location.href='#team';
+					document.location.href='#' + teamFormation;
 					updateTeam(imgs[0].src, imgs[0].alt);
 				}
 			}
@@ -104,7 +104,7 @@
 						}
 					}
 				} else {
-					document.location.href='#team';
+					document.location.href='#' + teamFormation;
 					updateTeam(imgs[0].src, imgs[0].alt);
 				}
 			}
@@ -136,13 +136,13 @@
 						}
 					}
 				} else {
-						document.location.href='#team';
+					document.location.href='#' + teamFormation;
 						updateTeam(imgs[0].src, imgs[0].alt);
 					}
 			}
 
 			function updateTeam(src, alt) {
-				let field = document.getElementById("field");
+				let field = document.getElementById("field" + teamFormation);
 				let element = field.children[idxToUpdate];
 				let div = element.children[0];
 				let img = element.children[1];
@@ -153,7 +153,7 @@
 
 				let results = field.querySelectorAll('div[selected="true"');
 				if(results.length == 11) {
-					document.getElementById("generate_button").style.display = 'block';
+					document.getElementById("generate_button_" + teamFormation).style.display = 'block';
 				}
 
 			}
@@ -189,7 +189,7 @@
 						}
 					}
 				} else {
-					scrollToElement('team', true);
+					scrollToElement(teamFormation, true);
 					updateTeam(imgs[0].src, imgs[0].alt);
 				}
 			}
@@ -198,7 +198,7 @@
 				document.getElementById('generated_area').style.display = 'block';
 				
 				let target = document.getElementById('roster_generated');
-				let cloned = document.getElementById('field').cloneNode(true);
+				let cloned = document.getElementById('field' + teamFormation).cloneNode(true);
 				target.appendChild(cloned);
 
 				switch(share_option) {
@@ -281,7 +281,6 @@
 				mfSet.clear();
 				fwSet.clear();
 
-				document.getElementById("generate_button").style.display = 'none';
 				let checkMarks = document.querySelectorAll(".checkmark");
 				checkMarks.forEach(e => {
 					e.style.opacity = 0.0;
@@ -306,40 +305,39 @@
 				resetSelection();
 
 				if (type == 'roster') {
-					document.getElementById('team').style.display = 'none';
-					
-					document.getElementById("generate_button").style.display = 'none';
+					document.getElementById('team442').style.display = 'none';
+					document.getElementById('team433').style.display = 'none';
+					document.getElementById('team352').style.display = 'none';
+					document.getElementById('team541').style.display = 'none';	
+
 					document.getElementById('gk_instruction').innerText = "Pick 3 keepers.";
 					document.getElementById('df_instruction').innerText = "Pick 8 defenders + 1 backup.";
 					document.getElementById('mf_instruction').innerText = "Pick 6 midfielders + 1 backup.";
 					document.getElementById('fw_instruction').innerText = "Pick 6 forwards + 1 backup.";
+					document.getElementById('formation').style.display = 'none';
 
-					document.getElementById('team').style.display = 'none';
 					scrollToElement('gk_instruction', true);
 
 				} else { // team 11
-
-					if (shadowField == null) {
-						shadowField = document.getElementById('field').cloneNode(true);
-						shadowField.id = "_temp";
-					} else {
-						document.getElementById('field').remove();
-						shadowField.id = 'field'
-						document.getElementById('team').appendChild(shadowField);
-						shadowField = document.getElementById('field').cloneNode(true);
-						shadowField.id = "_temp";
-					}
-					
-
 					document.getElementById('gk_instruction').innerText = "Pick your keeper.";
 					document.getElementById('df_instruction').innerText = "Pick your defender.";
 					document.getElementById('mf_instruction').innerText = "Pick your midfield.";
 					document.getElementById('fw_instruction').innerText = "Pick your forward.";
 
-					document.getElementById("generate_button").style.display = 'none';
-					document.getElementById('team').style.display = 'block';
-					scrollToElement('team', true);
+					document.getElementById('formation').style.display = 'block';
+					scrollToElement('formation', true);
 				}
+			}
+			var teamFormation = '';
+			function chooseForm(form) {
+				teamFormation = form;
+				document.getElementById('team442').style.display = 'none';
+				document.getElementById('team433').style.display = 'none';
+				document.getElementById('team352').style.display = 'none';
+				document.getElementById('team541').style.display = 'none';
+				document.getElementById(form).style.display = 'block';
+
+				scrollToElement('field' + form, true);
 			}
 
 			function handleShareOption(idx) {
@@ -409,13 +407,48 @@
 				</div>
 			</article>
 			
-			<article id="team" style="display:none;" class="wrapper style2">
+			<article id="formation" class="wrapper style2" style="display:none;">
+				<div class="container">
+					<header>
+						<h2>Pick your team formation</h2>
+					</header>
+					<div class="row aln-center">
+						<div class="col-4 col-6-medium col-12-small">
+							<section class="box style1">
+								<p>Typical formation</p>
+								<a onclick="chooseForm('team433');" class="button large scrolly">4-3-3</a>
+							</section>
+						</div>
+						<div class="col-4 col-6-medium col-12-small">
+							<section class="box style1">
+								<p>Defensive formation</p>
+								<a onclick="chooseForm('team541');" class="button large scrolly">5-4-1</a>
+							</section>
+						</div>
+						<div class="col-4 col-6-medium col-12-small">
+							<section class="box style1">
+								<p>Attacking formation</p>
+								<a onclick="chooseForm('team352');" class="button large scrolly">3-5-2</a>
+							</section>
+						</div>
+						<div class="col-4 col-6-medium col-12-small">
+							<section class="box style1">
+								<p>Diamond formation</p>
+								<a onclick="chooseForm('team442');" class="button large scrolly">4-4-2</a>
+							</section>
+						</div>
+
+					</div>
+				</div>
+			</article>
+
+			<article id="team433" style="display:none;" class="wrapper style2">
 				<header>
 					<h2>Pick your team, select position and pick players</h2>
-					<a id="generate_button" style="display:none;margin: auto; width: 50%;" class="button aln-center" onclick="scrollToElement('share');">Share my team</a>
+					<a id="generate_button_team433" style="display:none;margin: auto; width: 50%;" class="button aln-center" onclick="scrollToElement('share');">Share my team</a>
 				</header>
 		
-				<div id="field" class="container" style="position:relative;width:560px;height:840px;background-image: url('images/field.png');">
+				<div id="fieldteam433" class="container" style="position:relative;width:560px;height:840px;background-image: url('images/field.png');">
 					<div onclick="choosePlayer('GK', 0);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:55px; left:230px;">
 						<div style="font-size:11pt;">GK</div>
 						<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
@@ -463,8 +496,171 @@
 					<img src="images/USSoccer.png" width="75" height="75" style="position:absolute; top:10px; left:480px"/>
 				</div>
 			</article>
-			
 
+<article id="team541" style="display:none;" class="wrapper style2">
+	<header>
+		<h2>Pick your team, select position and pick players</h2>
+		<a id="generate_button_team541" style="display:none;margin: auto; width: 50%;" class="button aln-center" onclick="scrollToElement('share');">Share my team</a>
+	</header>
+
+	<div id="fieldteam541" class="container" style="position:relative;width:560px;height:840px;background-image: url('images/field.png');">
+		<div onclick="choosePlayer('GK', 0);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:55px; left:230px;">
+			<div style="font-size:11pt;">GK</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('DF', 1);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:180px; left:110px;">
+			<div style="font-size:11pt;">CB</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('DF', 2);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:180px; left:350px;">
+			<div style="font-size:11pt;">CB</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('DF', 3);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:290px; left:50px;">
+			<div style="font-size:11pt;">RB</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('DF', 4);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:290px; left:410px;">
+			<div style="font-size:11pt;">LB</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('MF', 5);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:180px; left:230px;">
+			<div style="font-size:11pt;">CB</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('MF', 6);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:430px; left:170px;">
+			<div style="font-size:11pt;">MF</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('MF', 7);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:430px; left:290px;">
+			<div style="font-size:11pt;">MF</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('FW', 8);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:450px; left:50px;">
+			<div style="font-size:11pt;">MF</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('FW', 9);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:450px; left:410px;">
+			<div style="font-size:11pt;">MF</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('FW', 10);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:600px; left:230px;">
+			<div style="font-size:11pt;">FW</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<img src="images/USSoccer.png" width="75" height="75" style="position:absolute; top:10px; left:480px"/>
+	</div>
+</article>
+
+<article id="team352" style="display:none;" class="wrapper style2">
+	<header>
+		<h2>Pick your team, select position and pick players</h2>
+		<a id="generate_button_team352" style="display:none;margin: auto; width: 50%;" class="button aln-center" onclick="scrollToElement('share');">Share my team</a>
+	</header>
+
+	<div id="fieldteam352" class="container" style="position:relative;width:560px;height:840px;background-image: url('images/field.png');">
+		<div onclick="choosePlayer('GK', 0);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:55px; left:230px;">
+			<div style="font-size:11pt;">GK</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('DF', 1);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:180px; left:100px;">
+			<div style="font-size:11pt;">CB</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('DF', 2);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:180px; left:360px;">
+			<div style="font-size:11pt;">CB</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('MF', 3);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:480px; left:230px;">
+			<div style="font-size:11pt;">AM</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('FW', 4);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:600px; left:300px;">
+			<div style="font-size:11pt;">FW</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('DF', 5);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:180px; left:230px;">
+			<div style="font-size:11pt;">CB</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('MF', 6);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:370px; left:170px;">
+			<div style="font-size:11pt;">MF</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('MF', 7);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:370px; left:290px;">
+			<div style="font-size:11pt;">MF</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('MF', 8);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:370px; left:50px;">
+			<div style="font-size:11pt;">MF</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('FW', 9);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:370px; left:410px;">
+			<div style="font-size:11pt;">MF</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('FW', 10);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:600px; left:170px;">
+			<div style="font-size:11pt;">FW</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<img src="images/USSoccer.png" width="75" height="75" style="position:absolute; top:10px; left:480px"/>
+	</div>
+</article>
+
+<article id="team442" style="display:none;" class="wrapper style2">
+	<header>
+		<h2>Pick your team, select position and pick players</h2>
+		<a id="generate_button_team442" style="display:none;margin: auto; width: 50%;" class="button aln-center" onclick="scrollToElement('share');">Share my team</a>
+	</header>
+
+	<div id="fieldteam442" class="container" style="position:relative;width:560px;height:840px;background-image: url('images/field.png');">
+		<div onclick="choosePlayer('GK', 0);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:55px; left:230px;">
+			<div style="font-size:11pt;">GK</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('DF', 1);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:180px; left:160px;">
+			<div style="font-size:11pt;">CB</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('DF', 2);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:180px; left:300px;">
+			<div style="font-size:11pt;">CB</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('DF', 3);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:230px; left:50px;">
+			<div style="font-size:11pt;">RB</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('DF', 4);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:230px; left:410px;">
+			<div style="font-size:11pt;">LB</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('MF', 5);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:350px; left:230px;">
+			<div style="font-size:11pt;">DM</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('MF', 6);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:430px; left:100px;">
+			<div style="font-size:11pt;">MF</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('MF', 7);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:430px; left:360px;">
+			<div style="font-size:11pt;">MF</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('MF', 8);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:460px; left:230px;">
+			<div style="font-size:11pt;">AM</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('FW', 9);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:600px; left:290px;">
+			<div style="font-size:11pt;">FW</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<div onclick="choosePlayer('FW', 10);" style="width:100px;background:black;border-radius:6px;height:100px;position:absolute;top:600px; left:170px;">
+			<div style="font-size:11pt;">FW</div>
+			<img src="images/shadow.png" width="70" height="70" style="filter: grayscale(0.8);"/>
+		</div>
+		<img src="images/USSoccer.png" width="75" height="75" style="position:absolute; top:10px; left:480px"/>
+	</div>
+</article>
 		<!-- Portfolio -->
 			<article class="wrapper style3">
 				<div class="container">
