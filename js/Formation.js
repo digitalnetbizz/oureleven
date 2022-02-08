@@ -3,11 +3,11 @@ class Formation {
     static TemplateUri = '/team-template.html';
     static DataUri = '/data/formations.json';
 
-    get dataUri() {
+    get templateUri() {
         return "https://oureleven.com" + Formation.TemplateUri;
     }
 
-    get templateUri() {
+    get dataUri() {
         return "https://oureleven.com" + Formation.DataUri;
     }
 
