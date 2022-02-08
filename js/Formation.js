@@ -66,8 +66,7 @@ class Formation {
                         template = data;
 
                         let resp = await fetch(this.dataUri, {mode: 'no-cors', redirect: 'follow'});
-                        console.log(resp.text());
-                            let json = resp.json();                        
+                            let json = await resp.json();                        
                             json.forEach(form => {
                                 this.createFieldContainer(form); 
                             });
