@@ -66,20 +66,11 @@ class Formation {
                         template = data;
 
                         let resp = await fetch(this.dataUri, {mode: 'no-cors', redirect: 'follow'});
-                        if (!resp.redirected) {
+                        console.log(resp.text());
                             let json = resp.json();                        
                             json.forEach(form => {
                                 this.createFieldContainer(form); 
                             });
-                        } else {
-                            let innerResp = await fetch(this.dataUri, {mode: 'no-cors', redirect: 'follow'});
-                             if (!innerResp.redirected) {
-                                let json = innerResp.json();                        
-                                json.forEach(form => {
-                                    this.createFieldContainer(form); 
-                                });
-                            }
-                        }
 
                     });
         }
