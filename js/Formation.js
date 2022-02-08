@@ -60,12 +60,12 @@ class Formation {
     populate() {
         window.onload = () => {
             let template = null;
-            fetch(this.templateUri)
+            fetch(this.templateUri, {mode: 'no-cors'})
                   .then(response => response.text())
                     .then(async (data) => {
                         template = data;
 
-                        let resp = await fetch(this.dataUri);
+                        let resp = await fetch(this.dataUri, {mode: 'no-cors'});
                         let json = await resp.json();
                         
                         json.forEach(form => {
