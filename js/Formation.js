@@ -1,77 +1,83 @@
 class Formation {
+  static TemplateUri = "/team-template.html";
+  static DataUri = "/data/formations.json";
+  static PixelLiteral = "px";
+  static DivTag = "div";
+  static ImgTag = "img";
 
-    static TemplateUri = '/team-template.html';
-    static DataUri = '/data/formations.json';
+  constructor(baseUrl) {
+    this.baseUrl = baseUrl;
+    this.count = 0;
+  }
 
-    get templateUri() {
-        return "https://oureleven.com" + Formation.TemplateUri;
-    }
+  get templateUri() {
+    return this.baseUrl + Formation.TemplateUri;
+  }
 
-    get dataUri() {
-        return "https://oureleven.com" + Formation.DataUri;
-    }
+  get dataUri() {
+    return this.baseUrl + Formation.DataUri;
+  }
 
-    createPosition(item) {
-        let positionDiv = document.createElement('div');
-        positionDiv.onclick = (e) => {
-            let element = e.currentTarget;
-            choosePlayer(element.getAttribute('pick'), element.getAttribute('idx'));
-        };
-        positionDiv.className = 'positions';
-        positionDiv.style.top = item.top + 'px';
-        positionDiv.style.left = item.left + 'px';
-        positionDiv.setAttribute('pick', item.pick);
-        positionDiv.setAttribute('idx', count++);
+  createPosition(item, container, refElement) {
+    const attributePick = "pick";
+    const attributeIndex = "idx";
 
-        let positionDisplay = document.createElement('div');
-        positionDisplay.className = 'positionDisplay';
-        positionDisplay.innerText = item.display;
-        positionDiv.appendChild(positionDisplay);
+    let positionDiv = document.createElement(Formation.DivTag);
+    positionDiv.onclick = (e) => {
+      let element = e.currentTarget;
+      choosePlayer(element.getAttribute(attributePick), 
+                    element.getAttribute(attributeIndex));
+    };
+    positionDiv.className = "positions";
+    positionDiv.style.top = item.top + Formation.PixelLiteral;
+    positionDiv.style.left = item.left + Formation.PixelLiteral;
+    positionDiv.setAttribute(attributePick, item.pick);
+    positionDiv.setAttribute(attributeIndex, this.count++);
 
-        let positionImg = document.createElement('img');
-        positionImg.src = 'images/shadow.png';
-        positionImg.className = 'positionImg';
-        positionDiv.appendChild(positionImg);
+    let positionDisplay = document.createElement(Formation.DivTag);
+    positionDisplay.className = "positionDisplay";
+    positionDisplay.innerText = item.display;
+    positionDiv.appendChild(positionDisplay);
 
-        div.insertBefore(positionDiv, refElement);
-    }
+    let positionImg = document.createElement(Formation.ImgTag);
+    positionImg.src = "images/shadow.png";
+    positionImg.className = "positionImg";
+    positionDiv.appendChild(positionImg);
 
-    createFieldContainer(form) {
-        let shadowDiv = document.createElement('div');
-        shadowDiv.innerHTML = template;
-        let article = shadowDiv.querySelector('#team');
-        let button = shadowDiv.querySelector('#generate_button_team');
-        let div = shadowDiv.querySelector('#fieldteam');
-        article.id = article.id + form.formation;
-        button.id = button.id + form.formation;
-        div.id = div.id + form.formation;
+    container.insertBefore(positionDiv, refElement);
+  }
 
-        let refElement = div.children[0];
+  createFieldContainer(form, template) {
+    let shadowDiv = document.createElement(Formation.DivTag);
+    shadowDiv.innerHTML = template;
+    let article = shadowDiv.querySelector("#team");
+    let button = shadowDiv.querySelector("#generate_button_team");
+    let div = shadowDiv.querySelector("#fieldteam");
+    article.id = article.id + form.formation;
+    button.id = button.id + form.formation;
+    div.id = div.id + form.formation;
 
-        var count = 0;
-        form.team.forEach(item => {
-            this.createPosition(item);
-        });
-        let markerElement = document.getElementById("marker");
-        article.remove();
-        document.body.insertBefore(article, markerElement);
-    }
+    let refElement = div.children[0];
+    this.count = 0;
+    form.team.forEach((item) => {
+      this.createPosition(item, div, refElement);
+    });
+    let markerElement = document.getElementById("marker");
+    article.remove();
+    document.body.insertBefore(article, markerElement);
+  }
 
-    populate() {
-        window.onload = () => {
-            let template = null;
-            fetch(this.templateUri, {mode: 'no-cors', redirect: 'follow'})
-                  .then(response => response.text())
-                    .then(async (data) => {
-                        template = data;
+  populate() {
+    window.onload = async () => {
+      let template = null;
+      let templateResp = await fetch(this.templateUri);
+      template = await templateResp.text();
 
-                        let resp = await fetch(this.dataUri, {mode: 'no-cors', redirect: 'follow'});
-                            let json = await resp.json();                        
-                            json.forEach(form => {
-                                this.createFieldContainer(form); 
-                            });
-
-                    });
-        }
-    }
+      let resp = await fetch(this.dataUri);
+      let json = await resp.json();
+      json.forEach((form) => {
+        this.createFieldContainer(form, template);
+      });
+    };
+  }
 }

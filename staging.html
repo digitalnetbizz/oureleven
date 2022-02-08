@@ -43,7 +43,7 @@
 
 		<script>
 
-			const formation = new Formation();
+			const formation = new Formation("https://www.oureleven.com");
 			formation.populate();
 
 			const gkSet = new Set();
@@ -153,6 +153,7 @@
 			function updateTeam(src, alt) {
 				let field = document.getElementById("field" + teamFormation);
 				let element = field.children[idxToUpdate];
+				alert(idxToUpdate);
 				let div = element.children[0];
 				let img = element.children[1];
 
