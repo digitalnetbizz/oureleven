@@ -44,7 +44,7 @@
     "team": [
         {"pick": "GK", "display": "GK", "top": 55, "left": 230},
         {"pick": "DF", "display": "CB", "top": 180, "left": 160},
-        {"pick": "DF", "display": "CB", "top": 180, "left": 360},
+        {"pick": "DF", "display": "CB", "top": 180, "left": 290},
         {"pick": "DF", "display": "RB", "top": 230, "left": 50},
         {"pick": "DF", "display": "LB", "top": 230, "left": 410},
         {"pick": "MF", "display": "DM", "top": 350, "left": 230},
