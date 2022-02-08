@@ -38,125 +38,18 @@
 
 		<script type="text/javascript" src="./js/dom-to-image.min.js"></script>
 		<script type="text/javascript" src="./js/utility.js"></script>
+		<script type="text/javascript" src="./js/Formation.js"></script>
 
 		<script>
+
+			const formation = new Formation();
+			formation.populate();
+			
 			const gkSet = new Set();
 			const dfSet = new Set();
 			const mfSet = new Set();
 			const fwSet = new Set();
 
-			window.onload = () => {
-
-				let json = [{ 'formation': '433', 
-					'team': [
-						{'pick': 'GK', 'display': 'GK', 'top': 55, 'left': 230},
-						{'pick': 'DF', 'display': 'CB', 'top': 180, 'left': 160},
-						{'pick': 'DF', 'display': 'CB', 'top': 180, 'left': 300},
-						{'pick': 'DF', 'display': 'RB', 'top': 230, 'left': 50},
-						{'pick': 'DF', 'display': 'LB', 'top': 230, 'left': 410},
-						{'pick': 'MF', 'display': 'DM', 'top': 380, 'left': 230},
-						{'pick': 'MF', 'display': 'MF', 'top': 430, 'left': 100},
-						{'pick': 'MF', 'display': 'MF', 'top': 430, 'left': 360},
-						{'pick': 'FW', 'display': 'RW', 'top': 560, 'left': 50},
-						{'pick': 'FW', 'display': 'LW', 'top': 560, 'left': 410},
-						{'pick': 'FW', 'display': 'FW', 'top': 600, 'left': 230}
-					]},
-					{ 'formation': '541', 
-					'team': [
-						{'pick': 'GK', 'display': 'GK', 'top': 55, 'left': 230},
-						{'pick': 'DF', 'display': 'CB', 'top': 180, 'left': 110},
-						{'pick': 'DF', 'display': 'RB', 'top': 180, 'left': 350},
-						{'pick': 'DF', 'display': 'LB', 'top': 290, 'left': 50},
-						{'pick': 'DF', 'display': 'CB', 'top': 290, 'left': 410},
-						{'pick': 'MF', 'display': 'MF', 'top': 180, 'left': 230},
-						{'pick': 'MF', 'display': 'MF', 'top': 430, 'left': 170},
-						{'pick': 'MF', 'display': 'MF', 'top': 430, 'left': 290},
-						{'pick': 'MF', 'display': 'MF', 'top': 450, 'left': 50},
-						{'pick': 'MF', 'display': 'MF', 'top': 450, 'left': 410},
-						{'pick': 'FW', 'display': 'FW', 'top': 600, 'left': 230}
-					]},
-					{ 'formation': '352', 
-					'team': [
-						{'pick': 'GK', 'display': 'GK', 'top': 55, 'left': 230},
-						{'pick': 'DF', 'display': 'CB', 'top': 180, 'left': 100},
-						{'pick': 'DF', 'display': 'CB', 'top': 180, 'left': 360},
-						{'pick': 'MF', 'display': 'AM', 'top': 480, 'left': 230},
-						{'pick': 'FW', 'display': 'FW', 'top': 600, 'left': 300},
-						{'pick': 'DF', 'display': 'CB', 'top': 180, 'left': 230},
-						{'pick': 'MF', 'display': 'MF', 'top': 370, 'left': 170},
-						{'pick': 'MF', 'display': 'MF', 'top': 370, 'left': 290},
-						{'pick': 'MF', 'display': 'MF', 'top': 370, 'left': 50},
-						{'pick': 'MF', 'display': 'MF', 'top': 370, 'left': 410},
-						{'pick': 'FW', 'display': 'FW', 'top': 600, 'left': 170}
-					]},
-					{ 'formation': '442', 
-					'team': [
-						{'pick': 'GK', 'display': 'GK', 'top': 55, 'left': 230},
-						{'pick': 'DF', 'display': 'CB', 'top': 180, 'left': 160},
-						{'pick': 'DF', 'display': 'CB', 'top': 180, 'left': 360},
-						{'pick': 'DF', 'display': 'RB', 'top': 230, 'left': 50},
-						{'pick': 'DF', 'display': 'LB', 'top': 230, 'left': 410},
-						{'pick': 'MF', 'display': 'DM', 'top': 350, 'left': 230},
-						{'pick': 'MF', 'display': 'MF', 'top': 430, 'left': 100},
-						{'pick': 'MF', 'display': 'MF', 'top': 430, 'left': 360},
-						{'pick': 'MF', 'display': 'AM', 'top': 460, 'left': 230},
-						{'pick': 'FW', 'display': 'FW', 'top': 600, 'left': 290},
-						{'pick': 'FW', 'display': 'FW', 'top': 600, 'left': 170}
-					]}
-				];
-				
-				let template = null;
-				fetch('https://www.oureleven.com/team-template.html')
-  					.then(response => response.text())
-						.then(data => {
-							template = data;
-
-							let resp = await fetch('https://www.oureleven.com/data/formations.json');
-							let json = resp.json();
-							
-							json.forEach(form => {
-								let shadowDiv = document.createElement('div');
-								shadowDiv.innerHTML = template;
-								let article = shadowDiv.querySelector('#team');
-								let button = shadowDiv.querySelector('#generate_button_team');
-								let div = shadowDiv.querySelector('#fieldteam');
-								article.id = article.id + form.formation;
-								button.id = button.id + form.formation;
-								div.id = div.id + form.formation;
-
-								let refElement = div.children[0];
-
-								var count = 0;
-								form.team.forEach(item => {
-									let positionDiv = document.createElement('div');
-									positionDiv.onclick = (e) => {
-										let element = e.currentTarget;
-										choosePlayer(element.getAttribute('pick'), element.getAttribute('idx'));
-									};
-									positionDiv.className = 'positions';
-									positionDiv.style.top = item.top + 'px';
-									positionDiv.style.left = item.left + 'px';
-									positionDiv.setAttribute('pick', item.pick);
-									positionDiv.setAttribute('idx', count++);
-
-									let positionDisplay = document.createElement('div');
-									positionDisplay.className = 'positionDisplay';
-									positionDisplay.innerText = item.display;
-									positionDiv.appendChild(positionDisplay);
-
-									let positionImg = document.createElement('img');
-									positionImg.src = 'images/shadow.png';
-									positionImg.className = 'positionImg';
-									positionDiv.appendChild(positionImg);
-
-									div.insertBefore(positionDiv, refElement);
-								});
-								let markerElement = document.getElementById("marker");
-								article.remove();
-								document.body.insertBefore(article, markerElement);
-							});
-						});
-			}
 
 			function handleDf(idx) {
 				let rootElement = document.getElementById('defenders');
