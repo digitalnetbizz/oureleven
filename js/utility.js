@@ -1,5 +1,5 @@
 function download(elementName) {
-  if(isSafari) {
+  if(isSafari()) {
       getLink2(elementName);
       return;
   }
@@ -17,7 +17,7 @@ function download(elementName) {
 function getLink2(elementName) {
   rasterizeDom(elementName, function (url) {
     let aElement = document.createElement("a");
-    if(!isSafari) {
+    if(!isSafari()) {
         aElement.target = '_blank';
     }
     aElement.href = url;
@@ -42,7 +42,7 @@ function shareToFacebook(elementName) {
   rasterizeDom(elementName, function (url) {
     let shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + url;
     let aElement = document.createElement("a");
-    if(!isSafari) {
+    if(!isSafari()) {
         aElement.target = '_blank';
     }
     aElement.href = shareUrl;
@@ -54,7 +54,7 @@ function shareToTwitter(elementName) {
   rasterizeDom(elementName, function (url) {
     let shareUrl = "https://twitter.com/share?url=" + url + "&text=My USMNT squad pick (with oureleven.com)&hashtags=#USMNT,#oureleven";
     let aElement = document.createElement("a");
-    if(!isSafari) {
+    if(!isSafari()) {
         aElement.target = '_blank';
     }
     aElement.href = shareUrl;
