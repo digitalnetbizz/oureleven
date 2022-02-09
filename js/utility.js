@@ -3,7 +3,7 @@ function download(elementName) {
       getLink2(elementName);
       return;
   }
-  
+
   domtoimage
     .toJpeg(document.getElementById(elementName), { quality: 0.95 })
     .then(function (dataUrl) {
@@ -17,7 +17,9 @@ function download(elementName) {
 function getLink2(elementName) {
   rasterizeDom(elementName, function (url) {
     let aElement = document.createElement("a");
-    aElement.target = '_blank';
+    if(!isSafari) {
+        aElement.target = '_blank';
+    }
     aElement.href = url;
     aElement.click();
   });
