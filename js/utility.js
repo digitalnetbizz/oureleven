@@ -40,23 +40,25 @@ function getLink(elementName) {
 
 function shareToFacebook(elementName) {
   rasterizeDom(elementName, function (url) {
-    window.open(
-      "https://www.facebook.com/sharer/sharer.php?u=" + url,
-      "facebook-share-dialog",
-      "width=626,height=436"
-    );
+    let shareUrl = "https://www.facebook.com/sharer/sharer.php?u=" + url;
+    let aElement = document.createElement("a");
+    if(!isSafari) {
+        aElement.target = '_blank';
+    }
+    aElement.href = shareUrl;
+    aElement.click();
   });
 }
 
 function shareToTwitter(elementName) {
   rasterizeDom(elementName, function (url) {
-    window.open(
-      "https://twitter.com/share?url=" +
-        url +
-        "&text=My USMNT squad pick (with oureleven.com)&hashtags=#USMNT,#oureleven",
-      "twitter-share-dialog",
-      "width=626,height=436"
-    );
+    let shareUrl = "https://twitter.com/share?url=" + url + "&text=My USMNT squad pick (with oureleven.com)&hashtags=#USMNT,#oureleven";
+    let aElement = document.createElement("a");
+    if(!isSafari) {
+        aElement.target = '_blank';
+    }
+    aElement.href = shareUrl;
+    aElement.click();
   });
 }
 
