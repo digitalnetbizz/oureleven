@@ -19,10 +19,14 @@
             navigator.share(shareData)
         });
     }
+    async function dummyAsync() {
+
+    }
+
     function getLink2(elementName) {
         saveToImgur(elementName, function(url) {
             const clipboardItem = new ClipboardItem({
-                'text/plain': someAsyncMethod().then((result) => {
+                'text/plain': dummyAsync().then((result) => {
             
                 if (!result) {
                     return new Promise(async (resolve) => {
