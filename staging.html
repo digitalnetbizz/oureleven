@@ -53,6 +53,11 @@
 
 
 			function handleDf(idx) {
+				navigator.clipboard.write([
+					new ClipboardItem({
+						"text/plain": Promise.resolve("This text was copied using `Clipboard.prototype.write`."),
+					})]);
+					
 				let rootElement = document.getElementById('defenders');
 				let articleElement = rootElement.querySelectorAll('article')[idx];
 
@@ -217,8 +222,7 @@
 						getLink2('generated_area');
 						break;
 					case 2:
-						getLink3('generated_area');
-						//shareToTwitter('generated_area');
+						shareToTwitter('generated_area');
 						break;
 					case 3:
 						shareToFacebook('generated_area');
