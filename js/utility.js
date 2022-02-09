@@ -9,15 +9,34 @@
             });
     }
 
+    function getLink3(elementName) {
+        saveToImgur(elementName, function(url) {
+            const shareData = {
+                title: 'USMNT team',
+                text: 'your team selections',
+                url: url
+              }
+            navigator.share(shareData)
+        });
+    }
     function getLink2(elementName) {
         saveToImgur(elementName, function(url) {
-            navigator.clipboard.writeText(url).then(function() {
-                let aElement = document.createElement('a');
-                aElement.href = url;
-                aElement.click();
-            }, function(err) {
-            console.error('Async: Could not copy text: ', err);
-            });
+            const clipboardItem = new ClipboardItem({
+                'text/plain': someAsyncMethod().then((result) => {
+            
+                if (!result) {
+                    return new Promise(async (resolve) => {
+                        resolve(new Blob[``]())
+                    })
+                }
+                const copyText = url
+                    return new Promise(async (resolve) => {
+                        resolve(new Blob([copyText]))
+                    })
+                }),
+            })
+            navigator.clipboard.write([clipboardItem]);
+            alert(url + ' written to clipboard.')
         });
     }
 

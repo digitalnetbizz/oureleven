@@ -153,7 +153,6 @@
 			function updateTeam(src, alt) {
 				let field = document.getElementById("field" + teamFormation);
 				let element = field.children[idxToUpdate];
-				alert(idxToUpdate);
 				let div = element.children[0];
 				let img = element.children[1];
 
@@ -215,10 +214,11 @@
 						download('generated_area');
 						break;
 					case 1:
-						getLink('generated_area');
+						getLink2('generated_area');
 						break;
 					case 2:
-						shareToTwitter('generated_area');
+						getLink3('generated_area');
+						//shareToTwitter('generated_area');
 						break;
 					case 3:
 						shareToFacebook('generated_area');
