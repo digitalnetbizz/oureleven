@@ -80,36 +80,8 @@
 			
 			<article id="formation" class="wrapper style2" style="display:none;">
 				<div class="container">
-					<header>
-						<h2>Pick your team formation</h2>
-					</header>
-					<div class="row aln-center">
-						<div class="col-4 col-6-medium col-12-small">
-							<section class="box style1">
-								<p>Typical formation</p>
-								<a onclick="chooseForm('team433');" class="button large scrolly">4-3-3</a>
-							</section>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<section class="box style1">
-								<p>Defensive formation</p>
-								<a onclick="chooseForm('team541');" class="button large scrolly">5-4-1</a>
-							</section>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<section class="box style1">
-								<p>Attacking formation</p>
-								<a onclick="chooseForm('team352');" class="button large scrolly">3-5-2</a>
-							</section>
-						</div>
-						<div class="col-4 col-6-medium col-12-small">
-							<section class="box style1">
-								<p>Diamond formation</p>
-								<a onclick="chooseForm('team442');" class="button large scrolly">4-4-2</a>
-							</section>
-						</div>
-
-					</div>
+					<header><h2>Pick your team formation</h2></header>
+					<div class="row aln-center" id="formationPickContainer"></div>
 				</div>
 			</article>
 			<article id="marker" class="wrapper style3">
@@ -211,6 +183,7 @@
 				</div>
 			</article>
 			<div id="templateArea">
+				<!-- player block -->
 				<div class="col-4 col-6-medium col-12-small" style="display:none;">
 					<article class="box style2">
 						<span class="image featured"><img src="" alt=""  style="filter: grayscale(0.8);"/></span>
@@ -219,8 +192,14 @@
 						<p><img src="" class="flag"/><span></span></p>
 					</article>
 				</div>
+				<!-- choose team block -->
+				<div class="col-4 col-6-medium col-12-small">
+					<section class="box style1">
+						<p class="formationDesc"></p>
+						<a clsss="formSelectionButton" class="button large scrolly"></a>
+					</section>
+				</div>
 			</div>
-
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/jquery.scrolly.min.js"></script>
@@ -228,6 +207,5 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
-
 	</body>
 </html>

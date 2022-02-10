@@ -67,6 +67,21 @@ class Formation {
     document.body.insertBefore(article, markerElement);
   }
 
+  createFormationOption(form) {
+    const parent = document.getElementById("formationPickContainer");
+		let templateParent = document.getElementById("templateArea");
+    
+    let element = templateParent.children[1].cloneNode(true);
+    let descElement = element.querySelector("formationDesc");
+    descElement.innerText = form.description;
+    let aElement = element.querySelector("formSelectionButton");
+    aElement.innerText = form.formationDisplay;
+    aElement.onclick = () => {
+      chooseForm('team' + form.formation);
+    };
+    parent.appendChild(element);
+  }
+
   async populate() {
     let template = null;
     let templateResp = await fetch(this.templateUri);
@@ -76,7 +91,7 @@ class Formation {
     let json = await resp.json();
     json.forEach((form) => {
       this.createFieldContainer(form, template);
+      this.createFormationOption(form);
     });
-    
   }
 }
