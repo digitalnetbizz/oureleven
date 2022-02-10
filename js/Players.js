@@ -40,17 +40,17 @@ class Players {
 
     	
 	async populate() {
-        let resp = await fetch(this.dataUri);
-        let players = await resp.json();
+        const resp = await fetch(this.dataUri);
+        const players = await resp.json();
 
         let gkContainer = document.getElementById("goalkeepers");
         let dfContainer = document.getElementById("defenders");
         let mfContainer = document.getElementById("midfielders");
         let fwContainer = document.getElementById("forwards");
 
-        populatePlayers(players.gk_candidates, gkContainer, handleGK);
-        populatePlayers(players.df_candidates, dfContainer, handleDf);
-        populatePlayers(players.mf_candidates, mfContainer, handleMf);
-        populatePlayers(players.fw_candidates, fwContainer, handleFw);        
+        this.populatePlayers(players.gk_candidates, gkContainer, handleGK);
+        this.populatePlayers(players.df_candidates, dfContainer, handleDf);
+        this.populatePlayers(players.mf_candidates, mfContainer, handleMf);
+        this.populatePlayers(players.fw_candidates, fwContainer, handleFw);        
     }
 }
