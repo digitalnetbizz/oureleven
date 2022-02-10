@@ -70,11 +70,11 @@ class Formation {
   createFormationOption(form) {
     const parent = document.getElementById("formationPickContainer");
 		let templateParent = document.getElementById("templateArea");
-    
+
     let element = templateParent.children[1].cloneNode(true);
-    let descElement = element.querySelector("formationDesc");
+    let descElement = element.querySelector(".formationDesc");
     descElement.innerText = form.description;
-    let aElement = element.querySelector("formSelectionButton");
+    let aElement = element.querySelector(".formSelectionButton");
     aElement.innerText = form.formationDisplay;
     aElement.onclick = () => {
       chooseForm('team' + form.formation);
