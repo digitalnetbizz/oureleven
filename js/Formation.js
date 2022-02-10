@@ -67,17 +67,16 @@ class Formation {
     document.body.insertBefore(article, markerElement);
   }
 
-  populate() {
-    window.onload = async () => {
-      let template = null;
-      let templateResp = await fetch(this.templateUri);
-      template = await templateResp.text();
+  async populate() {
+    let template = null;
+    let templateResp = await fetch(this.templateUri);
+    template = await templateResp.text();
 
-      let resp = await fetch(this.dataUri);
-      let json = await resp.json();
-      json.forEach((form) => {
-        this.createFieldContainer(form, template);
-      });
-    };
+    let resp = await fetch(this.dataUri);
+    let json = await resp.json();
+    json.forEach((form) => {
+      this.createFieldContainer(form, template);
+    });
+    
   }
 }
