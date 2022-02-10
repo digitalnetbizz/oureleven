@@ -72,6 +72,7 @@ class Formation {
 		let templateParent = document.getElementById("templateArea");
 
     let element = templateParent.children[1].cloneNode(true);
+    element.style.display = 'block';
     let descElement = element.querySelector(".formationDesc");
     descElement.innerText = form.description;
     let aElement = element.querySelector(".formSelectionButton");
