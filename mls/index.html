@@ -1,0 +1,286 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>OurEleven</title>
+		<!-- encoding -->
+		<meta charset="utf-8" />
+		<!-- views -->
+		<meta name="viewport" content="width=device-width; initial-scale=0.5, maximum-scale=0.5, minimum-scale=0.5; " />
+		<link rel="icon" type="image/png" sizes="250x250" href="../images/USSoccer.png">
+		<!-- cache control -->
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<!-- seo metadata -->
+		<meta property="og:url"           content="https://oureleven.com" />
+		<meta property="og:type"          content="website" />
+		<meta property="og:title"         content="oureleven USMNT" />
+		<meta property="og:description"   content="Roster and Team generator" />
+		<meta name="description" content="soccer team, player selector for MLS teams"/> 
+		<meta name="keywords" content="USMNT, soccer, MLS, USSoccer, squad picker, team selector"/>
+		<!-- links -->
+		<link rel="stylesheet" href="./assets/css/main.css" />
+		<style>
+			.flag {width:20px; height:20px;border: 1px solid gray;margin-right:5px; border-radius: 10px; }
+			.positions {width:100px; background:black; font-size:8px;border-radius:6px; height:100px; position:absolute; }
+			.positionDisplay {font-size:11pt; }
+			.positionImg { width:70px; height: 70px; filter: grayscale(0.8); }
+            html {
+                 scroll-behavior: smooth;
+            }
+		</style>
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+	    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K386LGG92N"></script>
+			<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-K386LGG92N');
+		</script>
+	</head>
+	<body class="is-preload">
+
+			<article id="work" class="wrapper style2">
+				<div class="container">
+					<header>
+						<h1 id="fan_greetings" style="line-height: 1.1;">MLS fans? Choose a team and select your players then share your starting 11.</h1>
+					</header>
+				</div>
+			</article>
+			
+		<article class="wrapper style2">
+			<div class="container">
+				<div class="row aln-center">
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='atlanta-united/index.html';">
+						<section class="box style1" style="background-color: black;">
+							<span style="width:50px;color:black;"></span>
+							<div style="color:gold;font-size:13pt;">Atlanta United</div>
+							<a class="button" style="background-color: red;color:gold;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='austin-fc/index.html';">
+						<section class="box style1" style="background-color: darkgreen;">
+							<span style="width:50px;color:black;"></span>
+							<div style="color:white;font-size:13pt;">Austin FC</div>
+							<a class="button" style="background-color: black;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='charlotte-fc/index.html';">
+						<section class="box style1" style="background-color: royalblue;">
+							<span style="width:50px;color:white;"></span>
+							<div style="color:black;font-size:13pt;">Charlotte FC</div>
+							<a class="button" style="background-color: black;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='chicago-fire-fc/index.html';">
+						<section class="box style1" style="background-color: lightskyblue;">
+							<span style="width:50px;color:red;"></span>
+							<div style="color:black;font-size:13pt;">Chicago Fire FC</div>
+							<a class="button" style="background-color: red;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='fc-cincinnati/index.html';">
+						<section class="box style1" style="background-color: navy;">
+							<span style="width:50px;color:red;"></span>
+							<div style="color:white;font-size:13pt;">FC Cincinnati</div>
+							<a class="button" style="background-color: orange;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='colorado-rapids/index.html';">
+						<section class="box style1" style="background-color: maroon;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">Colorado Rapids</div>
+							<a class="button" style="background-color: lightskyblue;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='columbus-crew/index.html';">
+						<section class="box style1" style="background-color: yellow;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:black;font-size:13pt;">Columbus Crew</div>
+							<a class="button" style="background-color: black;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='d-c-united/index.html';">
+						<section class="box style1" style="background-color: black;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">D.C. United</div>
+							<a class="button" style="background-color: red;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='fc-dallas/index.html';">
+						<section class="box style1" style="background-color: navy;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">FC Dallas</div>
+							<a class="button" style="background-color: red;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='houston-dynamo-fc/index.html';">
+						<section class="box style1" style="background-color: black;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">Houston Dynamo FC</div>
+							<a class="button" style="background-color: darkorange;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='sporting-kansas-city/index.html';">
+						<section class="box style1" style="background-color: navy;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">Sporting Kansas City</div>
+							<a class="button" style="background-color: lightskyblue;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='la-galaxy/index.html';">
+						<section class="box style1" style="background-color:midnightblue;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">LA Galaxy</div>
+							<a class="button" style="background-color: yellow;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='los-angeles-football-club/index.html';">
+						<section class="box style1" style="background-color:black;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:gold;font-size:13pt;">LA FC</div>
+							<a class="button" style="background-color: gold;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='inter-miami-cf/index.html';">
+						<section class="box style1" style="background-color:pink;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:black;font-size:13pt;">Inter Miami CF</div>
+							<a class="button" style="background-color: black;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='minnesota-united/index.html';">
+						<section class="box style1" style="background-color:lightslategray;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:black;font-size:13pt;">Minnesota United</div>
+							<a class="button" style="background-color: lightskyblue;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='cf-montreal/index.html';">
+						<section class="box style1" style="background-color:black;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">CF Montréal</div>
+							<a class="button" style="background-color: lightslategray;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='nashville-sc/index.html';">
+						<section class="box style1" style="background-color:yellow;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:black;font-size:13pt;">Nashville SC</div>
+							<a class="button" style="background-color: black;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='new-england-revolution/index.html';">
+						<section class="box style1" style="background-color:white;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:black;font-size:13pt;">New England</div>
+							<a class="button" style="background-color: red;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='new-york-red-bulls/index.html';">
+						<section class="box style1" style="background-color:darkred;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:gold;font-size:13pt;">New York Red Bulls</div>
+							<a class="button" style="background-color: white;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='new-york-red-city-fc/index.html';">
+						<section class="box style1" style="background-color:darkblue;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">New York City FC</div>
+							<a class="button" style="background-color: skyblue;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='orlando-city/index.html';">
+						<section class="box style1" style="background-color:purple;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">Orlando City</div>
+							<a class="button" style="background-color: gold;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='philadelphia-union/index.html';">
+						<section class="box style1" style="background-color:burlywood;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:royalblue;font-size:13pt;">Philadelphia Union</div>
+							<a class="button" style="background-color: black;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='portland-timbers/index.html';">
+						<section class="box style1" style="background-color:darkgreen;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">Portland Timbers</div>
+							<a class="button" style="background-color: white;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='real-salt-lake/index.html';">
+						<section class="box style1" style="background-color:darkblue;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:gold;font-size:13pt;">Real Salt Lake</div>
+							<a class="button" style="background-color: darkred;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='san-jose-earthquakes/index.html';">
+						<section class="box style1" style="background-color:black;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">SJ Earthquakes</div>
+							<a class="button" style="background-color: darkblue;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='seattle-sounders-fc/index.html';">
+						<section class="box style1" style="background-color:green;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">Seattle Sounders</div>
+							<a class="button" style="background-color: mediumblue;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='toronto-fc/index.html';">
+						<section class="box style1" style="background-color:maroon;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">Toronto FC</div>
+							<a class="button" style="background-color: navy;color:white;">Choose</a>
+						</section>
+					</div>
+					<div class="col-4 col-6-medium col-12-small" onclick="location.href='vancouver-whitecaps-fc/index.html';">
+						<section class="box style1" style="background-color:navy;">
+							<span style="width:50px;color:lightskyblue;"></span>
+							<div style="color:white;font-size:13pt;">Van. Whitecaps</div>
+							<a class="button" style="background-color: royalblue;color:white;">Choose</a>
+						</section>
+					</div>
+				</div>
+			</div>
+		</article>
+
+		<!-- Contact -->
+			<article id="contact" class="wrapper style4">
+				<div class="container medium">
+					<div class="row">
+						
+						<div class="col-12">
+							<hr />
+							<h3>Find me on ...</h3>
+							<ul class="social">
+								<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+							</ul>
+							<hr/>
+						</div>
+					</div>
+					<footer>
+						<ul id="copyright">
+							<li>&copy; OurEleven.com. All rights reserved.</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+						</ul>
+					</footer>
+				</div>
+			</article>
+			
+		<!-- Scripts -->
+			<script src="../assets/js/jquery.min.js"></script>
+			<script src="../assets/js/jquery.scrolly.min.js"></script>
+			<script src="../assets/js/browser.min.js"></script>
+			<script src="../assets/js/breakpoints.min.js"></script>
+			<script src="../assets/js/util.js"></script>
+			<script src="../assets/js/main.js"></script>
+	</body>
+</html>
