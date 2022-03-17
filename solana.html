@@ -15,6 +15,9 @@
             const TR_ELEMENT = 'TR';
             const TD_ELEMENT = 'TD';
             const PROGRAM_SEED = 'hello';
+            const DAYS_IN_WEEK = 7;
+            const HOURS_IN_DAY = 24;
+
             const payerKeyData = '[47,3,64,91,51,15,242,116,210,200,209,185,58,3,222,170,85,194,117,242,127,149,15,44,15,51,36,196,204,128,149,161,249,223,29,51,192,119,124,145,50,192,8,151,46,29,165,1,225,200,250,184,8,110,211,231,26,197,71,223,68,142,125,117]';
             const programKey = '[166,21,242,30,145,233,15,224,253,192,73,227,27,208,195,145,170,147,180,13,233,4,144,211,241,200,155,195,55,87,8,97,3,187,13,217,148,60,202,15,247,2,234,73,232,182,7,131,103,4,242,247,141,162,86,204,134,23,12,35,83,222,124,23]';
 
@@ -95,6 +98,7 @@
                     ['6pm', false], ['7pm', false], ['8pm', false], ['9pm', false], ['10pm', false], ['11pm', false]];
 
                 let rootElement = document.getElementById('table');
+                var hour = 0;
                 hours.forEach(item => {
                     let tr = document.createElement(TR_ELEMENT);
                     let td = document.createElement(TD_ELEMENT);
@@ -102,13 +106,38 @@
                     td.innerText =item[0];
                     tr.appendChild(td);
 
-                    for(let col=0; col<7; ++col) {
+                    for(let col=0; col < DAYS_IN_WEEK; ++col) {
                         let innerTd = document.createElement(TD_ELEMENT);
                         innerTd.className = (col>0 && col <6) ? (isActive) ? 'work-hour' : 'off-hour': 'weekend';
+                        innerTd.setAttribute('day', col);
+                        innerTd.setAttribute('hour', hour);
+                        innerTd.setAttribute('state', 0);
+                        innerTd.setAttribute('default', innerTd.className);
+                        innerTd.onclick = handleCellClick;
                         tr.appendChild(innerTd);
                     }
                     rootElement.appendChild(tr);
+                    hour++;
                 });
+            }
+
+            function handleCellClick(event) {
+                let el = event.target;
+                let day = el.getAttribute('day');
+                let hour = el.getAttribute('hour');
+                let state = el.getAttribute('state') != '0';
+                let newState = !state;
+
+                // updating state to blockchain
+                // updateWeekSlot(day, hour, newState);
+
+                // set render state
+                el.setAttribute('state', (newState == true) ? '1' : '0'); 
+                if (newState) {
+                    el.className = 'selected';
+                } else {
+                    el.className = el.getAttribute('default');
+                }
             }
 
             function renderTimeSlot(buffer) {
@@ -117,11 +146,12 @@
                     let item = buffer.readUInt32LE(col-1);
                     if (item != 0) {
                         // some data within
-                        for(let hour=0; hour < 24; ++hour) {
+                        for(let hour=0; hour < HOURS_IN_DAY; ++hour) {
                             if(item & Math.pow(2, hour) > 0) {
-                                // this hour is set, change color.
+                                // this hour is set, change bg-color.
                                 let cols = rows[hour+1].getElementsByTagName(TD_ELEMENT);
                                 cols[col].className = 'selected';
+                                cols[col].setAttribute('state', true);
                             }
                         }
                     }
@@ -130,7 +160,7 @@
 
             function bootloader() {
                 generate_cells();
-                //setup_solana();
+                setup_solana();
             }
 
         </script>
