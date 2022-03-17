@@ -10,6 +10,7 @@
             .selected { background-color:  maroon;}
         </style>
         <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
+
         <script>
             const TR_ELEMENT = 'TR';
             const TD_ELEMENT = 'TD';
@@ -48,19 +49,8 @@
                 if (accountInfo === null) {
                     console.log('weekslot not found.');
                 }
-                console.log(accountInfo.data);
-                /*
-                weekSlotInstance = solanaWeb3.borsh.deserialize(
-                    WeekSlotSchema,
-                    WeekSlotAccount,
-                    accountInfo.data,
-                );
-               
 
-                updateTimeSlot([weekSlotInstance.slot1, weekSlotInstance.slot2, weekSlotInstance.slot3, 
-                                weekSlotInstance.slot4, weekSlotInstance.slot5, weekSlotInstance.slot6,
-                                weekSlotInstance.slot7 ]);
-                */
+                renderTimeSlot(accountInfo.data);
             }
 
             function createParamData(day, hour, state) {
@@ -121,15 +111,15 @@
                 });
             }
 
-            function updateTimeSlot(arr) {
+            function renderTimeSlot(buffer) {
                 let rows = document.getElemenstByTagName(TR_ELEMENT);
                 for(let col=1; col <= arr.length; ++col) {
-                    let item = arr[col-1];
+                    let item = buffer.readUInt32LE(col-1);
                     if (item != 0) {
                         // some data within
                         for(let hour=0; hour < 24; ++hour) {
                             if(item & Math.pow(2, hour) > 0) {
-                                // set
+                                // this hour is set, change color.
                                 let cols = rows[hour+1].getElementsByTagName(TD_ELEMENT);
                                 cols[col].className = 'selected';
                             }
@@ -140,7 +130,7 @@
 
             function bootloader() {
                 generate_cells();
-                setup_solana();
+                //setup_solana();
             }
 
         </script>
