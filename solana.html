@@ -141,7 +141,7 @@
             }
 
             function renderTimeSlot(buffer) {
-                let rows = document.getElemenstByTagName(TR_ELEMENT);
+                let rows = document.getElementsByTagName(TR_ELEMENT);
                 for(let col=1; col <= arr.length; ++col) {
                     let item = buffer.readUInt32LE(col-1);
                     if (item != 0) {
