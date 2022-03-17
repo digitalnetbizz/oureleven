@@ -48,11 +48,14 @@
                 if (accountInfo === null) {
                     console.log('weekslot not found.');
                 }
+                console.log(accountInfo.data);
+                
                 weekSlotInstance = solanaWeb3.borsh.deserialize(
                     WeekSlotSchema,
                     WeekSlotAccount,
                     accountInfo.data,
                 );
+               
 
                 updateTimeSlot([weekSlotInstance.slot1, weekSlotInstance.slot2, weekSlotInstance.slot3, 
                                 weekSlotInstance.slot4, weekSlotInstance.slot5, weekSlotInstance.slot6,
