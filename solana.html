@@ -71,7 +71,7 @@
                      solanaWeb3.BufferLayout.u8('hour'),
                      solanaWeb3.BufferLayout.u8('state')]
                */
-                const data = Buffer.alloc(3);
+                const data = solanaWeb3.Buffer.alloc(3);
                 data.writeUInt8(day, 0);
                 data.writeUInt8(hour, 1);
                 data.writeUInt8(state?1:0, 2);
