@@ -57,7 +57,7 @@
                 if (accountInfo === null) {
                     console.log('weekslot not found.');
                 } else {
-                    console.log("acquired account's data: " + accountInfo.data);
+                    console.log("acquired account's data: " + accountInfo.data.toString());
                 }
 
                 console.log("rendering time slot");
@@ -152,6 +152,7 @@
                 let rows = document.getElementsByTagName(TR_ELEMENT); 
                 for(let col=1; col <= DAYS_IN_WEEK; ++col) {
                     let item = buffer.readUInt32LE(col-1);
+                    console.log("item: " + item);
                     if (item != 0) {
                         // some data within
                         for(let hour=0; hour < HOURS_IN_DAY; ++hour) {
