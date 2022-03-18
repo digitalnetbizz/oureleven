@@ -148,7 +148,7 @@
                 let rows = document.getElementsByTagName(TR_ELEMENT); 
                 for(let col=1; col <= DAYS_IN_WEEK; ++col) {
                     let item = buffer.readUInt32LE(col-1);
-\                    if (item != 0) {
+                    if (item != 0) {
                         // some data within
                         for(let hour=0; hour < HOURS_IN_DAY; ++hour) {
                             if((item & Math.pow(2, hour)) > 0) {
