@@ -30,11 +30,11 @@
             const setup_solana = async () => {
                 console.log('connecting to Solana devnet.');
                 // connect to Solana devnet.
-                connection = new solanaWeb3.Connection(
-                    solanaWeb3.clusterApiUrl('devnet'),
-                    'confirmed',
-                );
-                
+                const rpcUrl = 'https://api.devnet.solana.com';
+                connection = new Connection(rpcUrl, 'confirmed');
+                const version = await connection.getVersion();
+                console.log('Connection to cluster established:', rpcUrl, version);
+
                 // getting payer's account
                 const payerSecretKey = Uint8Array.from(JSON.parse(payerKeyData));
                 payer = solanaWeb3.Keypair.fromSecretKey(payerSecretKey);
