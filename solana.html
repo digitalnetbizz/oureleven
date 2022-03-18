@@ -156,7 +156,7 @@
                     if (item != 0) {
                         // some data within
                         for(let hour=0; hour < HOURS_IN_DAY; ++hour) {
-                            if(item & Math.pow(2, hour) > 0) {
+                            if((item & Math.pow(2, hour)) > 0) {
                                 // this hour is set, change bg-color.
                                 let cols = rows[hour+1].getElementsByTagName(TD_ELEMENT);
                                 cols[col].className = 'selected';
