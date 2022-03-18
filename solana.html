@@ -71,7 +71,7 @@
                      solanaWeb3.BufferLayout.u8('hour'),
                      solanaWeb3.BufferLayout.u8('state')]
                */
-               const data = new Uint8Array([day, hour, (state)?1:0]);
+               const data = [day, hour, (state)?1:0];
                return data;
             }
 
