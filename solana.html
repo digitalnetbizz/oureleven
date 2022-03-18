@@ -65,20 +65,16 @@
             }
 
             function createParamData(day, hour, state) {
-                const dataLayout = solanaWeb3.BufferLayout.struct(
+               /*
+               struct(
                     [solanaWeb3.BufferLayout.u8('day'),
                      solanaWeb3.BufferLayout.u8('hour'),
-                     solanaWeb3.BufferLayout.u8('state')]);
-
-                const data = solanaWeb3.Buffer.alloc(dataLayout.span);
-                dataLayout.encode(
-                    {
-                    day: day,
-                    hour: hour,
-                    state: (state) ? 1 : 0
-                    },
-                    data,
-                );
+                     solanaWeb3.BufferLayout.u8('state')]
+               */
+                const data = Buffer.alloc(3);
+                data.writeUInt8(day, 0);
+                data.writeUInt8(hour, 1);
+                data.writeUInt8(state?1:0, 2);
                 return data;
             }
 
@@ -91,11 +87,12 @@
                     data: createParamData(day, hour, state), // data parameters to pass into blockchain program
                 });
 
-                await solanaWeb3.sendAndConfirmTransaction(
+                let receipt = await solanaWeb3.sendAndConfirmTransaction(
                     connection,
                     new solanaWeb3.Transaction().add(instruction),
                     [payer],
                 );
+                console.log("receipt: " + receipt);
             }
 
             function generate_cells() {
@@ -152,8 +149,7 @@
                 let rows = document.getElementsByTagName(TR_ELEMENT); 
                 for(let col=1; col <= DAYS_IN_WEEK; ++col) {
                     let item = buffer.readUInt32LE(col-1);
-                    console.log("item: " + item);
-                    if (item != 0) {
+\                    if (item != 0) {
                         // some data within
                         for(let hour=0; hour < HOURS_IN_DAY; ++hour) {
                             if((item & Math.pow(2, hour)) > 0) {
