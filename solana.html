@@ -27,19 +27,23 @@
             var weekslotPubkey; // address to the `weekslot` program instance in blockchain.
             var weekSlotInstance; // deserialized version of weekslot locally.
 
-            const setup_solana = async () => {            
+            const setup_solana = async () => {
+                console.log('connecting to Solana devnet.');
                 // connect to Solana devnet.
                 connection = new solanaWeb3.Connection(
                     solanaWeb3.clusterApiUrl('devnet'),
                     'confirmed',
                 );
+                
                 // getting payer's account
                 const payerSecretKey = Uint8Array.from(JSON.parse(payerKeyData));
                 payer = solanaWeb3.Keypair.fromSecretKey(payerSecretKey);
-
+                console.log("getting payer's account: " + payer.publicKey);
+                
                 const programSecretKey = Uint8Array.from(JSON.parse(programKey));
                 const programKeypair = solanaWeb3.Keypair.fromSecretKey(programSecretKey);
                 programId = programKeypair.publicKey;
+                console.log("getting program's address: " + programId);
 
                 // derive the address (public key) of a weekslot account from the program.
                 weekslotPubkey = await solanaWeb3.PublicKey.createWithSeed(
@@ -47,12 +51,16 @@
                     PROGRAM_SEED,
                     programId,
                 );
+                console.log("getting program instance address: " + weekslotPubkey);
 
                 const accountInfo = await connection.getAccountInfo(weekslotPubkey);
                 if (accountInfo === null) {
                     console.log('weekslot not found.');
+                } else {
+                    console.log("acquired account's data: " + accountInfo.data);
                 }
 
+                console.log("rendering time slot");
                 renderTimeSlot(accountInfo.data);
             }
 
