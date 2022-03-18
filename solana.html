@@ -9,6 +9,7 @@
             .weekend { background-color: lightgray;}
             .selected { background-color:  maroon;}
         </style>
+        <script src="https://bundle.run/buffer@6.0.3"></script>
         <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
 
         <script>
@@ -71,7 +72,7 @@
                      solanaWeb3.BufferLayout.u8('hour'),
                      solanaWeb3.BufferLayout.u8('state')]
                */
-               const data = [day, hour, (state)?1:0];
+               const data = Buffer.from([day, hour, (state) ? 1 : 0]);
                return data;
             }
 
