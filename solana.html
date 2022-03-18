@@ -87,12 +87,11 @@
                     data: createParamData(day, hour, state), // data parameters to pass into blockchain program
                 });
 
-                let receipt = await solanaWeb3.sendAndConfirmTransaction(
+                await solanaWeb3.sendAndConfirmTransaction(
                     connection,
                     new solanaWeb3.Transaction().add(instruction),
                     [payer],
                 );
-                console.log("receipt: " + receipt);
             }
 
             function generate_cells() {
