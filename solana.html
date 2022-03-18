@@ -71,11 +71,8 @@
                      solanaWeb3.BufferLayout.u8('hour'),
                      solanaWeb3.BufferLayout.u8('state')]
                */
-                const data = solanaWeb3.Buffer.alloc(3);
-                data.writeUInt8(day, 0);
-                data.writeUInt8(hour, 1);
-                data.writeUInt8(state?1:0, 2);
-                return data;
+               const data = new Uint8Array([day, hour, (state)?1:0]);
+               return data;
             }
 
             async function updateWeekSlot(day, hour, state) {
