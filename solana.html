@@ -31,7 +31,7 @@
                 console.log('connecting to Solana devnet.');
                 // connect to Solana devnet.
                 const rpcUrl = 'https://api.devnet.solana.com';
-                connection = new Connection(rpcUrl, 'confirmed');
+                connection = new solanaWeb3.Connection(rpcUrl, 'confirmed');
                 const version = await connection.getVersion();
                 console.log('Connection to cluster established:', rpcUrl, version);
 
