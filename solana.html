@@ -142,7 +142,7 @@
 
             function renderTimeSlot(buffer) {
                 let rows = document.getElementsByTagName(TR_ELEMENT); 
-                for(let col=1; col <= arr.length; ++col) {
+                for(let col=1; col <= DAYS_IN_WEEK; ++col) {
                     let item = buffer.readUInt32LE(col-1);
                     if (item != 0) {
                         // some data within
