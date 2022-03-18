@@ -72,7 +72,7 @@
                      solanaWeb3.BufferLayout.u8('hour'),
                      solanaWeb3.BufferLayout.u8('state')]
                */
-               const data = Buffer.from([day, hour, (state) ? 1 : 0]);
+               const data = buffer.Buffer.from([day, hour, (state) ? 1 : 0]);
                return data;
             }
 
