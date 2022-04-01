@@ -17,6 +17,7 @@ const urlsToCache = [
     'assets/open.svg',
     'assets/settings.svg',
     'assets/user.svg',
+    'assets/logo.png',
     'https://fonts.gstatic.com/s/opensans/v28/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVQUwaEQbjA.woff'
 ];
 
