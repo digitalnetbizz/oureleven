@@ -1,0 +1,9 @@
+{
+recommendations:[ 
+{"rules": [
+  {"section":"about", "prop":"child_under17_count", "op":">", "value": 0},
+  {"section":"income", "prop":"utma_gain.amt", "op":"=", "value": 0},
+],
+"message": "Looks like you have child under 17 and without any UTMA capital gain. The first $1,100 in earnings in the UTMA account are tax-free. This earnings figure includes dividends, interest income, and any capital gains. The next $1,100 in earnings is taxable at the child's tax rate."
+},
+]}
