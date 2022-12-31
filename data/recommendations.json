@@ -1,5 +1,5 @@
 {
-recommendations:[ 
+"recommendations": [ 
 {"rules": [
   {"section":"about", "prop":"child_under17_count", "op":">", "value": 0},
   {"section":"income", "prop":"utma_gain.amt", "op":"=", "value": 0},
