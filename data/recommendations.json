@@ -94,5 +94,10 @@
   {"section":"income", "prop":"w2", "op":">", "value": 250000}
 ],
 "message": "You have high net income, consider maxing your 401k contribution. For joint filing and if both have 401k program at work, up to 43,000 per year."
+},
+{"rules": [
+  {"section":"basic", "prop":"over_50", "op":"=", "value": 1}
+],
+"message": "Individual age over-50 can contribute more to catch up for 401k, 403b & traditional IRA."
 }
 ]}
