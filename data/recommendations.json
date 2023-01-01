@@ -15,7 +15,12 @@
 {"rules": [
   {"section":"income", "prop":"f1099b_shortterm.amt", "op":">", "value": 30000}
 ],
-"message": "You have some short term capital gains from stocks, remember to send in extra payment via 1040-ES payment quarterly if applicable."
+"message": "You have some capital gains from stocks, remember to send in extra payment via 1040-ES payment quarterly if applicable."
+},
+{"rules": [
+  {"section":"income", "prop":"f1099b_longterm.amt", "op":">", "value": 30000}
+],
+"message": "You have some capital gains from stocks, remember to send in extra payment via 1040-ES payment quarterly if applicable."
 },
 {"rules": [
   {"section":"income", "prop":"f1099b_longterm.amt", "op":">", "value": 50000}
@@ -69,5 +74,11 @@
   {"section":"income", "prop":"f1099_div.amt", "op":">", "value": 0}
 ],
 "message": "Your dividend income is considered ordinary dividend. You should consider holding longer to qualify for qualified dividend. Qualified dividends that meet certain requirements are taxed at lower capital gain rates. "
-}
+},
+{"rules": [
+  {"section":"income", "prop":"f1099b_shortterm.amt", "op":">", "value": 0},
+  {"section":"income", "prop":"f1099b_longterm.amt", "op":"=", "value": 0}
+],
+"message": "You have some short term capital gains from stocks, if you hold it more than 12 months (to make it long-term), it can be tax as lower capital gain rate."
+},
 ]}
