@@ -50,5 +50,12 @@
   {"section":"income", "prop":"w2", "op":"<", "value": 130000}
 ],
 "message": "You didn't contribute to FSA program, you should check if your employer offers FSA program. FSA lets you pay for many out-of-pocket medical expenses or child-care with tax-free dollars."
+},
+{"rules": [
+  {"section":"income", "prop":"f1099_int_taxfree.amt", "op":"=", "value": 0},
+  {"section":"income", "prop":"w2", "op":">", "value": 100000},
+  {"section":"income", "prop":"f1099_int.amt", "op":">", "value": 1000}
+],
+"message": "You are getting interest payment that is taxable at your income bracket. Since you are at higher income bracket, you should consider investing into municipal bond. Income from bonds issued by state, city, and local governments (municipal bonds, or munis) is generally free from federal taxes."
 }
 ]}
