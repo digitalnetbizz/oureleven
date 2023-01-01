@@ -96,6 +96,30 @@
 "message": "You meet the requirement to contribute more into either Traditional or Roth IRA. Traditional IRA is pre-tax and will reduce your tax liability now, while Roth IRA is post-tax and investment growth is tax-free in the future."
 },
 {"rules": [
+  {"section":"about", "prop":"filing_status", "op":"=", "value": 0},
+  {"section":"tax", "prop":"taxable_income", "op":"<", "value": 44625}
+],
+"message": "You can take more long term capital gain and still pay 0% rate. For single filing status, if your taxable income is less than $44,625, long term capital gain tax rate is 0%. Check if you can harvest any long-term capital gain."
+},
+{"rules": [
+  {"section":"about", "prop":"filing_status", "op":"=", "value": 1},
+  {"section":"tax", "prop":"taxable_income", "op":"<", "value": 44625}
+],
+"message": "You can take more long term capital gain and still pay 0% rate. For married filing separate status, if your taxable income is less than $44,625, long term capital gain tax rate is 0%. Check if you can harvest any long-term capital gain."
+},
+{"rules": [
+  {"section":"about", "prop":"filing_status", "op":"=", "value": 3},
+  {"section":"tax", "prop":"taxable_income", "op":"<", "value": 59750}
+],
+"message": "You can take more long term capital gain and still pay 0% rate. For head of household filing status, if your taxable income is less than $59,750, long term capital gain tax rate is 0%. Check if you can harvest any long-term capital gain."
+},
+{"rules": [
+  {"section":"about", "prop":"filing_status", "op":"=", "value": 2},
+  {"section":"tax", "prop":"taxable_income", "op":"<", "value": 89250}
+],
+"message": "You can take more long term capital gain and still pay 0% rate. For joint filing status, if your taxable income is less than $89,250, long term capital gain tax rate is 0%. Check if you can harvest any long-term capital gain."
+},
+{"rules": [
   {"section":"income", "prop":"ira.amt", "op":"=", "value": 0},
   {"section":"about", "prop":"filing_status", "op":"=", "value": 2},
   {"section":"income", "prop":"magi", "op":"<", "value": 214000}
