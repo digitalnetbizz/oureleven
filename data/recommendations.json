@@ -5,5 +5,11 @@
   {"section":"income", "prop":"utma_gain.amt", "op":"=", "value": 0}
 ],
 "message": "Looks like you have child under 17 and without any UTMA capital gain. The first $1,100 in earnings in the UTMA account are tax-free. This earnings figure includes dividends, interest income, and any capital gains. The next $1,100 in earnings is taxable at the child's tax rate."
+},
+{"rules": [
+  {"section":"about", "prop":"f401k_contrib.amt", "op":"=", "value": 0},
+  {"section":"income", "prop":"w2", "op":">", "value": 50000}
+],
+"message": "You are not contributing to workplace retirement account such as 401k/403b etc. These contributions are tax-deferred and not part of taxable income."
 }
 ]}
