@@ -44,5 +44,11 @@
   {"section":"income", "prop":"w2", "op":">", "value": 75000}
 ],
 "message": "You didn't put in any ESPP purchase information and you are working salary income. Some companies offer Employee Stock Purchase Plan (ESPP) with a discount of 10%. If your company is offering that, consider enrolling into it."
+},
+{"rules": [
+  {"section":"income", "prop":"fsa.amt", "op":"=", "value": 0},
+  {"section":"income", "prop":"w2", "op":"<", "value": 130000}
+],
+"message": "You didn't contribute to FSA program, you should check if your employer offers FSA program. FSA lets you pay for many out-of-pocket medical expenses or child-care with tax-free dollars."
 }
 ]}
