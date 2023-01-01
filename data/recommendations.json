@@ -81,4 +81,18 @@
 ],
 "message": "You have some short term capital gains from stocks, if you hold it more than 12 months (to make it long-term), it can be tax as lower capital gain rate."
 },
+{"rules": [
+  {"section":"income", "prop":"f401k_contrib.amt", "op":"<", "value": 21500},
+  {"section":"about", "prop":"filing_status", "op":"!=", "value": 2},
+  {"section":"income", "prop":"w2", "op":">", "value": 200000}
+],
+"message": "You have high net income, consider maxing your 401k contribution. For your case, up to $21,500 per year."
+},
+{"rules": [
+  {"section":"income", "prop":"f401k_contrib.amt", "op":"<", "value": 43000},
+  {"section":"about", "prop":"filing_status", "op":"=", "value": 2},
+  {"section":"income", "prop":"w2", "op":">", "value": 250000}
+],
+"message": "You have high net income, consider maxing your 401k contribution. For joint filing and if both have 401k program at work, up to 43,000 per year."
+}
 ]}
