@@ -57,5 +57,11 @@
   {"section":"income", "prop":"f1099_int.amt", "op":">", "value": 1000}
 ],
 "message": "You are getting interest payment that is taxable at your income bracket. Since you are at higher income bracket, you should consider investing into municipal bond. Income from bonds issued by state, city, and local governments (municipal bonds, or munis) is generally free from federal taxes."
+},
+{"rules": [
+  {"section":"income", "prop":"w2", "op":">", "value": 0},
+  {"section":"income", "prop":"hsa.amt", "op":"=", "value": 0}
+],
+"message": "If you are enrolled into HSA-eligible health plan, you should contribute to HSA plan which is tax free and grow free. In 2022, you can contribute up to $3,650 if you have health coverage just for yourself or $7,300 if you have coverage for your family."
 }
 ]}
