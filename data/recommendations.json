@@ -11,5 +11,38 @@
   {"section":"income", "prop":"w2", "op":">", "value": 50000}
 ],
 "message": "You are not contributing to workplace retirement account such as 401k/403b etc. These contributions are tax-deferred and not part of taxable income."
+},
+{"rules": [
+  {"section":"income", "prop":"f1099b_shortterm.amt", "op":">", "value": 30000}
+],
+"message": "You have some short term capital gains from stocks, remember to send in extra payment via 1040-ES payment quarterly if applicable."
+},
+{"rules": [
+  {"section":"income", "prop":"f1099b_longterm.amt", "op":">", "value": 50000}
+],
+"message": "You have some long term capital gains from stocks, remember to send in extra payment via 1040-ES payment quarterly if applicable."
+},
+{"rules": [
+  {"section":"income", "prop":"f1099misc.amt", "op":">", "value": 1000},
+  {"section":"deduction", "prop":"business_deduction.amt", "op":"=", "value": 0}
+],
+"message": "You have some business income (MISC/NEC) and did not put in any business expense. Double check if you have any business deduction."
+},
+{"rules": [
+  {"section":"about", "prop":"child_under17_count", "op":">", "value": 0},
+  {"section":"deduction", "prop":"f529_contribution.amt", "op":"=", "value": 0}
+],
+"message": "Looks like you have child under 17 and not contributing any 529 plan. Creating a 529 plan gives you a tax-advantaged way to save for educational expenses from kindergarten to graduate school, including apprenticeship programs. Now there is a new option to move up to $35,000 of unspent funds into a Roth IRA account if the 529 account is 15 or more years old."
+},  
+{"rules": [
+  {"section":"income", "prop":"f1099b_shortterm.amt", "op":">", "value": 5000}
+],
+"message": "You are making some short-term capital gain, to reduce taxable income, you can consider doing capital loss harvesting. You sell an investment that's underperforming and losing money. Then, you use that loss to reduce your taxable capital gains and potentially offset up to $3,000 of your ordinary income."
+},  
+{"rules": [
+  {"section":"income", "prop":"espp_discount.amt", "op":"=", "value": 0},
+  {"section":"income", "prop":"w2", "op":">", "value": 75000}
+],
+"message": "You didn't put in any ESPP purchase information and you are working salary income. Some companies offer Employee Stock Purchase Plan (ESPP) with a discount of 10%. If your company is offering that, consider enrolling into it."
 }
 ]}
