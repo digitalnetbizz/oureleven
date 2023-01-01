@@ -91,7 +91,7 @@
 {"rules": [
   {"section":"income", "prop":"f401k_contrib.amt", "op":"<", "value": 43000},
   {"section":"about", "prop":"filing_status", "op":"=", "value": 2},
-  {"section":"income", "prop":"w2", "op":">", "value": 200`000},
+  {"section":"income", "prop":"w2", "op":">", "value": 200000},
   {"section":"income", "prop":"w2a.amt", "op":">", "value": 0},
   {"section":"income", "prop":"w2b.amt", "op":">", "value": 0}
 ],
