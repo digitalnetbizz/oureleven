@@ -89,6 +89,20 @@
 "message": "You have high net income, consider maxing your 401k contribution. For your case, up to $21,500 per year."
 },
 {"rules": [
+  {"section":"income", "prop":"ira.amt", "op":"=", "value": 0},
+  {"section":"about", "prop":"filing_status", "op":"!=", "value": 2},
+  {"section":"income", "prop":"magi", "op":"<", "value": 144000}
+],
+"message": "You meet the requirement to contribute more into either Traditional or Roth IRA. Traditional IRA is pre-tax and will reduce your tax liability now, while Roth IRA is post-tax and investment growth is tax-free in the future."
+},
+{"rules": [
+  {"section":"income", "prop":"ira.amt", "op":"=", "value": 0},
+  {"section":"about", "prop":"filing_status", "op":"=", "value": 2},
+  {"section":"income", "prop":"magi", "op":"<", "value": 214000}
+],
+"message": "You meet the requirement to contribute more into either Traditional or Roth IRA. Traditional IRA is pre-tax and will reduce your tax liability now, while Roth IRA is post-tax and investment growth is tax-free in the future."
+},  
+{"rules": [
   {"section":"income", "prop":"f401k_contrib.amt", "op":"<", "value": 43000},
   {"section":"about", "prop":"filing_status", "op":"=", "value": 2},
   {"section":"income", "prop":"w2", "op":">", "value": 200000},
