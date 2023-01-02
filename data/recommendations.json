@@ -139,5 +139,11 @@
   {"section":"about", "prop":"over_50", "op":"=", "value": 1}
 ],
 "message": "Individual age over-50 can contribute more to catch up for 401k, 403b & traditional IRA."
+},
+{"rules": [
+  {"section":"income", "prop":"agi", "op":"<", "value": 12500},
+  {"section":"about", "prop":"filing_status", "op":"!=", "value": 2}
+],
+"message": "You are earning less than standard deduction which means you won't be owing any tax, you can consider contributing to Roth IRA and those contribution can grow tax free into the future."
 }
 ]}
