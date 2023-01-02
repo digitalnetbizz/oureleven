@@ -147,13 +147,13 @@
 "message": "You are earning less than standard deduction which means you won't be owing any tax, you can consider contributing to Roth IRA and those contributions can grow tax free into the future."
 },
 {"rules": [
-  {"section":"tax", "prop":"net_income", "op":">", "value": 150000},
+  {"section":"tax", "prop":"net_income", "op":">", "value": 100000},
   {"section":"about", "prop":"filing_status", "op":"!=", "value": 2}
 ],
 "message": "You have excess net income and spare cash. Mega backdoor Roth is one strategy for you to save more for the future. This requires your employer 401k plan to allow 'after-tax contributions'. Search up 'Mega backdoor Roth' for more information."
 },
 {"rules": [
-  {"section":"tax", "prop":"net_income", "op":">", "value": 250000},
+  {"section":"tax", "prop":"net_income", "op":">", "value": 180000},
   {"section":"about", "prop":"filing_status", "op":"=", "value": 2}
 ],
 "message": "You have excess net income and spare cash. Mega backdoor Roth is one strategy for you to save more for the future. This requires your employer 401k plan to allow 'after-tax contributions'. Search up 'Mega backdoor Roth' for more information."
