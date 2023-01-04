@@ -1,6 +1,6 @@
 {
-  "name": "modeler",
-  "short_name": "modeler",
+  "name": "expense",
+  "short_name": "expense",
   "start_url": "/expense/",
   "display": "standalone",
   "orientation": "portrait",
