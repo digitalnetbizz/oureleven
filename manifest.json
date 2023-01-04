@@ -1,19 +1,19 @@
 {
-  "name": "expense",
-  "short_name": "expense",
-  "start_url": "/expense/",
+  "name": "modeler",
+  "short_name": "modeler",
+  "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
   "background_color": "#fff",
   "theme_color": "#673ab8",
   "icons": [
     {
-      "src": "/expense/assets/icons/android-chrome-192x192.png",
+      "src": "/assets/icons/android-chrome-192x192.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "/expense/assets/icons/android-chrome-512x512.png",
+      "src": "/assets/icons/android-chrome-512x512.png",
       "type": "image/png",
       "sizes": "512x512"
     }
